@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-	<title>Shower Presentation Engine</title>
+	<title>Ansible Basics</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=792, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -45,8 +45,8 @@
 		<p>Zero to Vagrant</p>
 	</header>
 	<section class="slide cover" id="Cover"><div>
-		<h2>Ansible: A Basic Introduction</h2>
-    <p>Brought you by <a href="http://twitter.com/chadoh">Chad Ostrowski</a> &amp; <a href="http://www.pipelinedeals.com">PipelineDeals</a></p>
+		<h2>Ansible Basics</h2>
+    <p>Brought you by <a href="https://github.com/chadoh">chadoh</a>, from <a href="http://www.pipelinedeals.com">PipelineDeals</a></p>
 		<img src="pictures/cover.png" alt="">
 		<!-- This photo is album art! http://sovarozum.bandcamp.com/track/skirmish-the-enemys-gate-is-down -->
 	</div></section>
@@ -56,7 +56,7 @@
   </section></div>
   <section class="slide"><div>
     <h2>Install it</h2>
-    <p>Ansible is written by Python folk, so you've gotta <a href="http://ansible.cc/docs/gettingstarted.html#requirements">do some of that</a>:</p>
+    <p>Ansible is written by Python folk, so you've gotta <a href="http://ansible.cc/docs/gettingstarted.html#requirements">do a wee bit of that</a>:</p>
 		<pre>
 			<code>easy_install pip</code>
 			<code>pip install paramiko PyYAML jinja2</code>
@@ -68,16 +68,44 @@
   <section class="slide"><div>
     <h2>Tell Ansible about your machines</h2>
     <p>By default, Ansible looks for your <a href="http://ansible.cc/docs/patterns.html">inventory file</a> at /etc/ansible/hosts</p>
+    <pre>
+      <code>localhost ansible_connection=local</code>
+      <code>[work]</code>
+      <code>shared-dev ansible_ssh_host=<mark>fqdn</mark> ansible_ssh_user=<mark>user</mark></code>
+      <code>prod ansible_ssh_host=<mark>fqdn</mark> ansible_ssh_user=<mark>user</mark></code>
+      <code>[personal]</code>
+      <code>bitcoins ansible_ssh_host=<mark>fqdn</mark> ansible_ssh_user=<mark>user</mark></code>
+    </pre>
   </section></div>
   <section class="slide"><div>
     <h2>One-offs</h2>
-    <p>Use individual ansible <a href="http://ansible.cc/docs/modules.html">modules</a> to do stuff to all your machines at once.</p>
+    <p>Use individual ansible <a href="http://ansible.cc/docs/modules.html">modules</a> to do stuff to all (or some (or one)) your machines at once.</p>
+    <pre>
+      <code>ansible all -m copy -a "src=~/.bashrc dest=/var/tmp/bashrc"</code>
+      <code>ansible work -m apt -a "name=cowsay"</code>
+      <code>ansible work -m shell -a "cowsay Hooray Ansible"</code>
+      <code>ansible localhost -m homebrew -a "name=cowsay"</code>
+    </pre>
   </section></div>
   <section class="slide"><div>
     <h2>Playbooks</h2>
+    <p><a href="http://ansible.cc/docs/playbooks.html">Playbooks</a> are a bundled set of one-offs, saved in a yaml file.</p>
+    <p>These get too lengthy for a slide; check out <a href="https://github.com/chadoh/ansible-starter/blob/master/playbook.yml">this simple starter playbook</a>.</p>
   </section></div>
   <section class="slide"><div>
     <h2>Vagrant</h2>
+    <p><a href="http://www.vagrantup.com">Vagrant</a> allows you to <a href="http://docs.vagrantup.com/v2/provisioning/ansible.html">set up a development VM with Ansible</a>.</p>
+    <pre>
+      <code>config.vm.network :private_network, ip: "192.168.111.222"</code>
+      <code>config.vm.provision :ansible do |ansible|</code>
+      <code>  ansible.playbook = "../ansible-starter/playbook.yml"</code>
+      <code>  ansible.inventory_file = "../ansible-starter/hosts"</code>
+      <code>end</code>
+    </pre>
+  </section></div>
+  <section class="slide"><div>
+    <h2>Vagrant troubleshooting</h2>
+    <p>Sometimes, when you run <code>vagrant up</code>, you'll get unexpected failures. Before getting distraught, try running <code>vagrant reload</code> and perhaps (if that fails, too) <code>vagrant up</code> again.</p>
   </section></div>
 	<p class="badge"><a href="https://github.com/shower/shower">Fork me on Github</a></p>
 	<!--
