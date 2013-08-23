@@ -51,12 +51,12 @@
 		<!-- This photo is album art! http://sovarozum.bandcamp.com/track/skirmish-the-enemys-gate-is-down -->
 	</div></section>
   <section class="slide"><div>
-    <h2><a href="http://ansible.cc/docs/">ansible.cc/docs</a></h2>
+    <h2><a href="http://www.ansibleworks.com/docs/">www.ansibleworks.com/docs</a></h2>
     <p>Approachable &amp; up-to-date!</p>
   </section></div>
   <section class="slide"><div>
     <h2>Install it</h2>
-    <p>Ansible is written by Python folk, so you've gotta <a href="http://ansible.cc/docs/gettingstarted.html#requirements">do a wee bit of that</a>:</p>
+    <p>Ansible is written by Python folk, so you've gotta <a href="http://www.ansibleworks.com/docs/gettingstarted.html#requirements">do a wee bit of that</a>:</p>
 		<pre>
 			<code>easy_install pip</code>
 			<code>pip install paramiko PyYAML jinja2</code>
@@ -67,7 +67,7 @@
   </section></div>
   <section class="slide"><div>
     <h2>Tell Ansible about your machines</h2>
-    <p>By default, Ansible looks for your <a href="http://ansible.cc/docs/patterns.html">inventory file</a> at /etc/ansible/hosts</p>
+    <p>By default, Ansible looks for your <a href="http://www.ansibleworks.com/docs/patterns.html">inventory file</a> at /etc/ansible/hosts</p>
     <pre>
       <code>localhost ansible_connection=local</code>
       <code>[work]</code>
@@ -79,7 +79,7 @@
   </section></div>
   <section class="slide"><div>
     <h2>One-offs</h2>
-    <p>Use individual ansible <a href="http://ansible.cc/docs/modules.html">modules</a> to do stuff to all (or some (or one)) your machines at once.</p>
+    <p>Use individual ansible <a href="http://www.ansibleworks.com/docs/modules.html">modules</a> to do stuff to all (or some (or one)) your machines at once.</p>
     <pre>
       <code>ansible all -m copy -a "src=~/.bashrc dest=/var/tmp/bashrc"</code>
       <code>ansible work -m apt -a "name=cowsay"</code>
@@ -89,7 +89,7 @@
   </section></div>
   <section class="slide"><div>
     <h2>Playbooks</h2>
-    <p><a href="http://ansible.cc/docs/playbooks.html">Playbooks</a> are a bundled set of one-offs, saved in a yaml file.</p>
+    <p><a href="http://www.ansibleworks.com/docs/playbooks.html">Playbooks</a> are a bundled set of one-offs, saved in a yaml file.</p>
     <p>These get too lengthy for a slide; check out <a href="https://github.com/chadoh/ansible-starter/blob/master/playbook.yml">this simple starter playbook</a>.</p>
   </section></div>
   <section class="slide"><div>
